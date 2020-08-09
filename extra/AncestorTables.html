@@ -1,0 +1,59 @@
+<!--
+* Licensed Materials - Property of IBM
+*
+* 5724-U18
+*
+* (C) Copyright IBM Corp. 2014  All Rights Reserved.
+*
+* US Government Users Restricted Rights - Use, duplication, or
+* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ancestor Tables</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+<body>
+<h1>Ancestor Tables</h1>
+<p>Ancestor tables are used to quickly determine the ancestors or descendants of a Mbo in a hierarchy.
+Hierarchies are defined with Mbos having at most one parent and any number of child records. 
+Hierarchies can have any number of levels.
+The hierarchy tables have a key column, ancestor column and a hierarchy levels columns. 
+The key column name depends on the Mbo, for work orders it's WONum, for PM's is PMNum, etc..
+The Ancestor column says which other record is an ancestor of key record.
+In tables with multi-part keys, like Work Order, there is also a key specifying the 2nd key, i.e. for Work Orders there is a SiteID column in WoAncestor.
+If A is the parent of B and B is the parent of C, then C has ancestors of B & A.
+The HierarchyLevels column indicates the closeness of the relationships.
+Each record has a ID record where HierarchyLevels = 0.
+In the case of ABC the ancestor table would look like:
+<table>
+	<tr> <th>Key</th><th>Ancestor</th><th>Hierarchy Levels</th> </tr>
+	<tr> <td>A</td><td>A</td><td>0</td> </tr>
+	<tr> <td>B</td><td>B</td><td>0</td> </tr>
+	<tr> <td>B</td><td>A</td><td>1</td> </tr>
+	<tr> <td>C</td><td>C</td><td>0</td> </tr>
+	<tr> <td>C</td><td>B</td><td>1</td> </tr>
+	<tr> <td>C</td><td>A</td><td>2</td> </tr>
+</table>
+<p>
+Existing Ancestor tables
+<ul style="list-style-type:square">
+	<li><a href="../objects/ASSETANCESTOR/ASSETANCESTOR.html">Asset Ancestor</a></li>
+	<li><a href="../objects/PERSONANCESTOR/PERSONANCESTOR.html">Person Ancestor</a></li>
+	<li><a href="../objects/PMANCESTOR/PMANCESTOR.html">PM Ancestor</a></li>
+	<li><a href="../objects/WOANCESTOR/WOANCESTOR.html">Work Order Ancestor</a></li>
+</ul>
+Note that there is an <a href="../objects/LOCANCESTOR/LOCANCESTOR.html">ancestor table for Locations</a>, but it operates in a slightly different way.
+</p>
+
+
+</body>
+</html>
